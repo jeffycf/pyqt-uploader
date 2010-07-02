@@ -1,0 +1,12 @@
+# -----------------------------------------------------------------------------
+# A PyQt interface for uploading files to Shotgun.
+# 
+# Allows you to configure the app for a specific shotgun instance and directory 
+# structure. Uploaded files need to be linked to an existing entity, but can 
+# have notes and tags applied.
+# 
+# Requires your Shotgun instance have API access to the Attachment entity
+# which is not on by default as of v2.0.3
+# 
+# Author: Rob Blau <rblau@laika.com>
+# -----------------------------------------------------------------------------
