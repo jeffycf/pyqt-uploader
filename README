@@ -1,12 +1,78 @@
-# -----------------------------------------------------------------------------
-# A PyQt interface for uploading files to Shotgun.
-# 
-# Allows you to configure the app for a specific shotgun instance and directory 
-# structure. Uploaded files need to be linked to an existing entity, but can 
-# have notes and tags applied.
-# 
-# Requires your Shotgun instance have API access to the Attachment entity
-# which is not on by default as of v2.0.3
-# 
-# Author: Rob Blau <rblau@laika.com>
-# -----------------------------------------------------------------------------
+================================================================================
+A PyQt interface for uploading files to Shotgun.
+================================================================================
+This is a simple user interface to upload files in batch to shotgun.
+Once configured, it provides an easy way to upload images or movies to Shotgun.
+
+Uploaded files can be automatically attached to a Shotgun Entity based on
+selection or directory structure and can have a note and tags applied.  Video
+files can have a thumbnail frame selected.
+
+-----------------------------------------------------------------------------
+Dependencies
+-----------------------------------------------------------------------------
+This application requires python 2.5+ and PyQt4 to be installed anc configured.
+
+Requires your Shotgun instance to have API access to the Attachment entity
+which is not on by default as of v2.0.3
+
+-----------------------------------------------------------------------------
+Install
+-----------------------------------------------------------------------------
+The application should be able to run in any environment where python 2.5+ is
+in the PATH as 'python' and PyQt4 is in the PYTHONPTH.  If either of those
+is not true, then the script will need to be modified for your environment.
+
+By default, there are fake values for all configuration settings.  These are
+all accessible in the preferences dialog and are stored per user.  If you want
+to configure the script with defaults to make sharing of the tool easy, there
+are a set of variables at the top of the script that can be tweaked.  These
+are:
+  --------------------------------------------------------------------------------
+  DEFAULT_SHOTGUN_API: The path to the Shotgun python API.
+
+  DEFAULT_SHOTGUN_URL: URL to connect to Shotgun through.
+
+  DEFAULT_SHOTGUN_SCRIPT: Name of the script to connect to Shotgun as.
+  
+  DEFAULT_SHOTGUN_KEY: Key for the script in Shotgun.
+  
+  DEFAULT_IMAGE_COMMAND: The command used to generate a thumbnail for a non-video
+    file.  The symbol $in will be replaced with the input file.  The symbol $out
+    will be replaced with a temporary output file, which will be uploaded to Shotgun.
+  
+  DEFAULT_MOVIE_COMMAND: The command used to generate a thumbnail for a video file.
+    In addition to $in and $out, the symbol $offset will be set to the value of the
+    offset entered in the app.
+  
+  DEFAULT_TAGS: A set of default tags to be added to every file uploaded.  These
+    can be overridden per file.
+  
+  DEFAULT_PATH_FIELD: The field on Attachments in Shotgun to fill out with the
+    source path for the upload.  Optional, but this can be useful to track where
+    files are uploaded from.
+  
+  DEFAULT_LINK_MAP: A mapping from the directory structure to entities in Shotgun.
+    This is a string where each line is in the form
+  
+    ENTITY_TYPE: PATH
+  
+    ENTITY_TYPE is the type of Entity in Shotgun that a file should be linked to.
+    PATH is a translation of your directory structure into the fields on the entity
+      to match against.  For example 'Task: /projects_root/*/shots/$entity.Shot.name/$name'
+      will attach any file from the directory '/projects_root/cool_project/shots/010/layout'
+      to the Task in Shotgun linked (Shotgun field 'entity') to a Shot entity with field 'name'
+      set to '010' and whose field 'name' is set to 'layout'.  If there is a singular match
+      to that query, then the file's will link to that Task automatically.
+  --------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------
+Manifest
+-----------------------------------------------------------------------------
+main_window.ui: Designer file for the main window
+prefs_dialog.ui: Designer file for the preference window
+uploader.py: uploader, with the output of pyuic4 for the two .ui files appended
+
+-----------------------------------------------------------------------------
+Author: Rob Blau <rblau@laika.com>
+-----------------------------------------------------------------------------

@@ -11,20 +11,22 @@ Author: Rob Blau <rblau@laika.com>
 ################################################################################
 # DEFAULT PREFS: Change these if you want people to use the script without config changes
 ################################################################################
-DEFAULT_TAGS = "to_be_filed"
-DEFAULT_COL_WIDTHS = "44,406,64,274,274"
-DEFAULT_IMAGE_COMMAND = "convert $in $out"
-DEFAULT_MOVIE_COMMAND = "ffmpeg -y -i $in -f mjpeg -ss $offset -vframes 1 -s svga -an $out"
+DEFAULT_SHOTGUN_API = "/net/a/place/where/we/put/the/shotgun_api3.py"
 DEFAULT_SHOTGUN_URL = "http://shotgun.kickass-studios.com/"
 DEFAULT_SHOTGUN_SCRIPT = "thumb_uploader"
 DEFAULT_SHOTGUN_KEY = "ALONGSTRINGOFNUMBERSANDLETTERSFROMSHOTGUN"
-DEFAULT_SHOTGUN_API = "/net/a/place/where/we/put/the/shotgun_api3_preview.py"
+DEFAULT_IMAGE_COMMAND = "convert $in $out"
+DEFAULT_MOVIE_COMMAND = "ffmpeg -y -i $in -f mjpeg -ss $offset -vframes 1 -s svga -an $out"
+DEFAULT_TAGS = "to_be_filed"
 DEFAULT_PATH_FIELD = "sg_path_to_file"
 DEFAULT_LINK_MAP = """\
 Asset: /job_root/*/assets/$type/${name}
 Task: /job_root/*/shots/$entity.Shot.name/${name}
 """
 
+################################################################################
+# THE ACTUAL CODE: You shouldn't need to go beyond this point for configuration
+################################################################################
 import re
 import os
 import sys
@@ -43,6 +45,11 @@ try:
 except:
     # to work when catt'ed together for standalone emailing
     pass
+
+################################################################################
+# Globals
+################################################################################
+DEFAULT_COL_WIDTHS = "44,406,64,274,274"
 
 ################################################################################
 # Model

@@ -1,0 +1,21 @@
+# vim temp files
+#################
+.*.swn
+.*.swo
+.*.swp
+
+# compiled python files
+#################
+*.pyc
+
+# pyuic4 output files
+#################
+main_window.py
+prefs_dialog.py
+
+# OS generated files #
+######################
+.DS_Store?
+ehthumbs.db
+Icon?
+Thumbs.db
