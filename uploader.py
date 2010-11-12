@@ -666,12 +666,6 @@ class Uploader(QtGui.QMainWindow):
         # shut down
         self.close()
 
-if __name__ == '__main__':
-    app = QtGui.QApplication(sys.argv)
-    w = Uploader()
-    w.show()
-    w.raise_()
-    sys.exit(app.exec_())
 # -*- coding: utf-8 -*-
 
 # Form implementation generated from reading ui file 'main_window.ui'
@@ -1036,3 +1030,9 @@ class Ui_Preferences(object):
 "</style></head><body style=\" font-family:\'Lucida Grande\'; font-size:13pt; font-weight:400; font-style:normal;\">\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"><span style=\" font-size:10pt;\">The values filled out in this table will determine what an uploaded file will be linked to.  The formate is \'Entity Type\': \'Match\'.  Match  is an expression that is run against the full path of the file being uploaded.  Variables starting with \'$\' will be matched against the full path of the file being uploaded.  The name of the variable will be used in a shotgun find_one call to find the entity to link to.  If there are no matches, the file is linked to the Person entity matching the username of the person doing the upload.  These rules are evaluated in order and the first match wins.</span></p></body></html>", None, QtGui.QApplication.UnicodeUTF8))
 
+if __name__ == '__main__':
+    app = QtGui.QApplication(sys.argv)
+    w = Uploader()
+    w.show()
+    w.raise_()
+    sys.exit(app.exec_())
